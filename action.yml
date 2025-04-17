@@ -5,7 +5,7 @@ inputs:
   mode:
     description: "Select script."
     required: false
-    default: "ophub"
+    default: "stevenliuit"
   openwrt_path:
     description: "Select armvirt64 file path."
     required: false
@@ -17,7 +17,7 @@ inputs:
   kernel_repo:
     description: "Select kernel repository."
     required: false
-    default: "ophub/kernel"
+    default: "stevenliuit/kernel"
   kernel_usage:
     description: "Set the tags of the stable kernel."
     required: false
