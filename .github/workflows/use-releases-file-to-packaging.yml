@@ -34,6 +34,7 @@ on:
           - crrc
           - dg3399
           - dg-tn3568
+          - alark35-3500
           - dlfr100
           - e20c
           - e25
@@ -176,7 +177,7 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.1.y_6.12.y"
+        default: "6.1.y"
         type: choice
         options:
           - 5.4.y
@@ -198,10 +199,10 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "stevenliuit/kernel"
         type: choice
         options:
-          - ophub/kernel
+          - stevenliuit/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -223,12 +224,12 @@ on:
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
-        default: "ophub"
+        default: "stevenliuit"
         type: choice
         options:
           - ophub
           - angel
-          - yourname
+          - stevenliuit
 
 env:
   TZ: America/New_York
@@ -308,7 +309,7 @@ jobs:
           armvirt_tarfile_path="openwrt/output"
           [[ -d "${armvirt_tarfile_path}" ]] || mkdir -p ${armvirt_tarfile_path}
           ln -sf /builder/openwrt ${GITHUB_WORKSPACE}/openwrt
-          ln -sf /builder/openwrt /home/runner/work/_actions/ophub/amlogic-s9xxx-openwrt/main/openwrt
+          ln -sf /builder/openwrt /home/runner/work/_actions/stevenliuit/amlogic-s9xxx-openwrt/main/openwrt
 
           latest_version=$(curl -s \
                 -H "Accept: application/vnd.github+json" \
@@ -339,7 +340,7 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
-        uses: ophub/amlogic-s9xxx-openwrt@main
+        uses: stevenliuit/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/output/*rootfs.tar.gz
           openwrt_board: ${{ inputs.openwrt_board }}
