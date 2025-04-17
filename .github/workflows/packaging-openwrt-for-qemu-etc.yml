@@ -60,7 +60,7 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.1.y_6.12.y"
+        default: "6.1.y"
         type: choice
         options:
           - 5.4.y
@@ -77,11 +77,12 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "stevenliuit/kernel"
         type: choice
         options:
           - ophub/kernel
           - breakingbadboy/OpenWrt
+          - stevenliuit/kernel
       auto_kernel:
         description: "Auto use the latest kernel"
         required: false
@@ -98,12 +99,12 @@ on:
       builder_name:
         description: "Set OpenWrt builder signature."
         required: false
-        default: "ophub"
+        default: "stevenliuit"
         type: choice
         options:
           - ophub
           - angel
-          - yourname
+          - stevenliuit
 
 env:
   TZ: America/New_York
@@ -162,7 +163,7 @@ jobs:
         working-directory: /builder
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         run: |
-          armvirt_tarfile_repo="ophub/amlogic-s9xxx-openwrt"
+          armvirt_tarfile_repo="stevenliuit/amlogic-s9xxx-openwrt"
           releases_tag_keywords="OpenWrt_lede_"
 
           armvirt_tarfile_path="openwrt/output"
@@ -204,7 +205,7 @@ jobs:
           ln -sf /builder/${SELECT_PACKITPATH} /opt/${SELECT_PACKITPATH}
 
       - name: Packaging OpenWrt
-        uses: ophub/flippy-openwrt-actions@main
+        uses: stevenliuit/flippy-openwrt-actions@main
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         env:
           OPENWRT_ARMVIRT: openwrt/output/*rootfs.tar.gz
