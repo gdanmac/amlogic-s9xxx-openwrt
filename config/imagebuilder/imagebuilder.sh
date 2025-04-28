@@ -128,6 +128,8 @@ custom_packages() {
     echo -e "${INFO} The [ ${amlogic_i18n} ] is downloaded successfully."
 
     # Download other luci-app-xxx
+    git clone https://github.com/kob/nf_deaf-openwrt.git package/kernel/nf_deaf
+    svn co https://github.com/kob/nf_deaf-openwrt.git package/kernel/nf_deaf
     # ......
 
     sync && sleep 3
