@@ -19,7 +19,7 @@ on:
         type: choice
         options:
           - openwrt:24.10.0
-          - immortalwrt:23.5..0
+          - immortalwrt:23.5.0
       openwrt_board:
         description: "Select device board"
         required: false
