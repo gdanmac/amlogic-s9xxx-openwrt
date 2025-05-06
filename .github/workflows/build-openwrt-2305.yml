@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: Build OpenWrt
+name: Build OpenWrt 23.05
 
 on:
   repository_dispatch:
